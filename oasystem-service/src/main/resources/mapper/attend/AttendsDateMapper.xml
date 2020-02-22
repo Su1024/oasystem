@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.attend.AttendsDateMapper">
+
+    <resultMap id="BaseResultMap" type="com.oasystem.model.AttendsDate">
+        <!--@mbg.generated-->
+        <!--@Table attends_date-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="attend_year" jdbcType="VARCHAR" property="attendYear"/>
+        <result column="attend_date" jdbcType="VARCHAR" property="attendDate"/>
+        <result column="is_work" jdbcType="INTEGER" property="isWork"/>
+        <result column="work_begin_time" jdbcType="VARCHAR" property="workBeginTime"/>
+        <result column="work_end_time" jdbcType="VARCHAR" property="workEndTime"/>
+        <result column="remark" jdbcType="LONGVARCHAR" property="remark"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, attend_year, attend_date, is_work, work_begin_time, work_end_time, remark, is_delete
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from attends_date
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from attends_date
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.AttendsDate"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into attends_date (attend_year, attend_date, is_work,
+        work_begin_time, work_end_time, remark,
+        is_delete)
+        values (#{attendYear,jdbcType=VARCHAR}, #{attendDate,jdbcType=VARCHAR}, #{isWork,jdbcType=INTEGER},
+        #{workBeginTime,jdbcType=TIMESTAMP}, #{workEndTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=LONGVARCHAR},
+        #{isDelete,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.AttendsDate"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into attends_date
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="attendYear != null">
+                attend_year,
+            </if>
+            <if test="attendDate != null">
+                attend_date,
+            </if>
+            <if test="isWork != null">
+                is_work,
+            </if>
+            <if test="workBeginTime != null">
+                work_begin_time,
+            </if>
+            <if test="workEndTime != null">
+                work_end_time,
+            </if>
+            <if test="remark != null">
+                remark,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="attendYear != null">
+                #{attendYear,jdbcType=VARCHAR},
+            </if>
+            <if test="attendDate != null">
+                #{attendDate,jdbcType=VARCHAR},
+            </if>
+            <if test="isWork != null">
+                #{isWork,jdbcType=INTEGER},
+            </if>
+            <if test="workBeginTime != null">
+                #{workBeginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEndTime != null">
+                #{workEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                #{remark,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.AttendsDate">
+        <!--@mbg.generated-->
+        update attends_date
+        <set>
+            <if test="attendYear != null">
+                attend_year = #{attendYear,jdbcType=VARCHAR},
+            </if>
+            <if test="attendDate != null">
+                attend_date = #{attendDate,jdbcType=VARCHAR},
+            </if>
+            <if test="isWork != null">
+                is_work = #{isWork,jdbcType=INTEGER},
+            </if>
+            <if test="workBeginTime != null">
+                work_begin_time = #{workBeginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="workEndTime != null">
+                work_end_time = #{workEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remark != null">
+                remark = #{remark,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.oasystem.model.AttendsDate">
+        <!--@mbg.generated-->
+        update attends_date
+        set attend_year = #{attendYear,jdbcType=VARCHAR},
+        attend_date = #{attendDate,jdbcType=VARCHAR},
+        is_work = #{isWork,jdbcType=INTEGER},
+        work_begin_time = #{workBeginTime,jdbcType=TIMESTAMP},
+        work_end_time = #{workEndTime,jdbcType=TIMESTAMP},
+        remark = #{remark,jdbcType=LONGVARCHAR},
+        is_delete = #{isDelete,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-18-->
+    <select id="selectAttendDateByIsWork" resultType="java.lang.String">
+        select attend_date
+        from attends_date
+        where is_work=0
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-18-->
+    <update id="updateIsWorkByAttendDate">
+        update attends_date
+        set is_work=#{isWork,jdbcType=INTEGER}
+        <where>
+            <if test="currentDate != null">
+                and attend_date=#{currentDate,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-19-->
+    <update id="updateWorkTime">
+        update attends_date
+        set work_begin_time=#{beginTime,jdbcType=TIME},
+        work_end_time=#{endTime,jdbcType=TIME}
+        where is_work=1
+    </update>
+
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-19-->
+    <select id="selectWorkTime" resultMap="BaseResultMap">
+        select *
+        from attends_date
+        where is_work=1
+        limit 1
+    </select>
+</mapper>

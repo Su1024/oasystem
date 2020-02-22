@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.system.dept.DeptInfoMapper">
+    <resultMap id="BaseResultMap" type="com.oasystem.model.DeptInfo">
+        <!--@mbg.generated-->
+        <!--@Table dept_info-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="dept_code" jdbcType="VARCHAR" property="deptCode"/>
+        <result column="lead_id" jdbcType="INTEGER" property="leadId"/>
+        <result column="people_number" jdbcType="INTEGER" property="peopleNumber"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="remarks" jdbcType="LONGVARCHAR" property="remarks"/>
+        <association property="userInfo" javaType="com.oasystem.model.UserInfo">
+            <id property="id" column="id"/>
+            <result property="name" column="user_name"/>
+        </association>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, dept_code,lead_id, people_number, `name`, create_time, remarks
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from dept_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from dept_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.DeptInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dept_info (lead_id, people_number, `name`,
+        create_time, remarks)
+        values (#{leadId,jdbcType=INTEGER}, #{peopleNumber,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=LONGVARCHAR})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.DeptInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into dept_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="leadId != null">
+                lead_id,
+            </if>
+            <if test="deptCode != null">
+                dept_code,
+            </if>
+            <if test="peopleNumber != null">
+                people_number,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="leadId != null">
+                #{leadId,jdbcType=INTEGER},
+            </if>
+            <if test="deptCode != null">
+                #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleNumber != null">
+                #{peopleNumber,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.DeptInfo">
+        <!--@mbg.generated-->
+        update dept_info
+        <set>
+            <if test="leadId != null">
+                lead_id = #{leadId,jdbcType=INTEGER},
+            </if>
+            <if test="deptCode != null">
+                dept_code = #{deptCode,jdbcType=VARCHAR},
+            </if>
+            <if test="peopleNumber != null">
+                people_number = #{peopleNumber,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectAllPage" resultMap="BaseResultMap">
+        select
+        dept_info.id, dept_info.dept_code,dept_info.lead_id, dept_info.`name`,
+        dept_info.create_time, dept_info.remarks,user_info.name as user_name,b.people_number as people_number
+        from dept_info left join user_info
+        on dept_info.id = user_info.dept_id and  user_info.role_id =2
+        left join (select dept_id,count(1) as people_number from user_info group by dept_id) as b
+        on dept_info.id  = b.dept_id
+        <where>
+            <if test="deptCode != null and deptCode != ''">
+
+                AND dept_info.dept_code like "%"#{deptCode}"%"
+            </if>
+            <if test="name != null and name != ''">
+                AND dept_info.name like "%"#{name}"%"
+            </if>
+        </where>
+        order by name,
+        create_time desc
+    </select>
+</mapper>

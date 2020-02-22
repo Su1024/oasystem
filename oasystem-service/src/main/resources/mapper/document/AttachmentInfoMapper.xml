@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.document.AttachmentInfoMapper">
+    <resultMap id="BaseResultMap" type="com.oasystem.model.AttachmentInfo">
+        <!--@mbg.generated-->
+        <!--@Table attachment_info-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="file_id" jdbcType="BIGINT" property="fileId"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type" jdbcType="VARCHAR" property="type"/>
+        <result column="create_uesr" jdbcType="INTEGER" property="createUesr"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="remarks" jdbcType="LONGVARCHAR" property="remarks"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, file_id, `location`, `name`, `type`, create_uesr, create_time, update_time, remarks,
+        is_delete
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from attachment_info
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from attachment_info
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.AttachmentInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into attachment_info (file_id, `location`, `name`,
+        `type`, create_uesr, create_time,
+        update_time, remarks, is_delete
+        )
+        values (#{fileId,jdbcType=BIGINT}, #{location,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{type,jdbcType=VARCHAR}, #{createUesr,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP},
+        #{updateTime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=LONGVARCHAR}, #{isDelete,jdbcType=INTEGER}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.AttachmentInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into attachment_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="fileId != null">
+                file_id,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="createUesr != null">
+                create_uesr,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="size != null">
+                size ,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="fileId != null">
+                #{fileId,jdbcType=BIGINT},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="createUesr != null">
+                #{createUesr,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="size != null">
+                #{size,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.AttachmentInfo">
+        <!--@mbg.generated-->
+        update attachment_info
+        <set>
+            <if test="fileId != null">
+                file_id = #{fileId,jdbcType=BIGINT},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="type != null">
+                `type` = #{type,jdbcType=VARCHAR},
+            </if>
+            <if test="createUesr != null">
+                create_uesr = #{createUesr,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.oasystem.model.AttachmentInfo">
+        <!--@mbg.generated-->
+        update attachment_info
+        set file_id = #{fileId,jdbcType=BIGINT},
+        `location` = #{location,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=VARCHAR},
+        create_uesr = #{createUesr,jdbcType=INTEGER},
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        remarks = #{remarks,jdbcType=LONGVARCHAR},
+        is_delete = #{isDelete,jdbcType=INTEGER}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-08-->
+    <select id="selectAllByFileIdOrderByCreateTimeDesc" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from attachment_info
+        where file_id=#{fileId,jdbcType=BIGINT} order by create_time desc
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-08-->
+    <update id="updateById" parameterType="java.lang.Integer">
+        update attachment_info
+        set is_delete = #{isDelete,jdbcType=INTEGER}
+        where id=#{id,jdbcType=BIGINT}
+    </update>
+</mapper>

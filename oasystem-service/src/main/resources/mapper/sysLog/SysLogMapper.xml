@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.sysLog.SysLogMapper">
+    <resultMap id="BaseResultMap" type="com.oasystem.model.SysLog">
+        <!--@mbg.generated-->
+        <!--@Table sys_log-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="oper_model" jdbcType="VARCHAR" property="operModel"/>
+        <result column="oper_type" jdbcType="VARCHAR" property="operType"/>
+        <result column="oper_desc" jdbcType="VARCHAR" property="operDesc"/>
+        <result column="oper_user_id" jdbcType="INTEGER" property="operUserId"/>
+        <result column="oper_user_name" jdbcType="VARCHAR" property="operUserName"/>
+        <result column="oper_user_ip" jdbcType="VARCHAR" property="operUserIp"/>
+        <result column="oper_time" jdbcType="TIMESTAMP" property="operTime"/>
+        <result column="oper_file_id" jdbcType="INTEGER" property="operFileId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, oper_model, oper_type, oper_desc, oper_user_id, oper_user_name, oper_user_ip,
+        oper_time,oper_file_id
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from sys_log
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from sys_log
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.SysLog"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sys_log (oper_model, oper_type, oper_desc,
+        oper_user_id, oper_user_name, oper_user_ip,
+        oper_time,oper_file_id)
+        values (#{operModel,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, #{operDesc,jdbcType=VARCHAR},
+        #{operUserId,jdbcType=INTEGER}, #{operUserName,jdbcType=VARCHAR}, #{operUserIp,jdbcType=VARCHAR},
+        #{operTime,jdbcType=TIMESTAMP},#{operFileId,jdbcType=INTEGER})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.SysLog"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into sys_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="operModel != null">
+                oper_model,
+            </if>
+            <if test="operType != null">
+                oper_type,
+            </if>
+            <if test="operDesc != null">
+                oper_desc,
+            </if>
+            <if test="operUserId != null">
+                oper_user_id,
+            </if>
+            <if test="operUserName != null">
+                oper_user_name,
+            </if>
+            <if test="operUserIp != null">
+                oper_user_ip,
+            </if>
+            <if test="operTime != null">
+                oper_time,
+            </if>
+            <if test="operFileId != null">
+                oper_file_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="operModel != null">
+                #{operModel,jdbcType=VARCHAR},
+            </if>
+            <if test="operType != null">
+                #{operType,jdbcType=VARCHAR},
+            </if>
+            <if test="operDesc != null">
+                #{operDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="operUserId != null">
+                #{operUserId,jdbcType=INTEGER},
+            </if>
+            <if test="operUserName != null">
+                #{operUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="operUserIp != null">
+                #{operUserIp,jdbcType=VARCHAR},
+            </if>
+            <if test="operTime != null">
+                #{operTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="operFileId != null">
+                #{operFileId,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.SysLog">
+        <!--@mbg.generated-->
+        update sys_log
+        <set>
+            <if test="operModel != null">
+                oper_model = #{operModel,jdbcType=VARCHAR},
+            </if>
+            <if test="operType != null">
+                oper_type = #{operType,jdbcType=VARCHAR},
+            </if>
+            <if test="operDesc != null">
+                oper_desc = #{operDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="operUserId != null">
+                oper_user_id = #{operUserId,jdbcType=INTEGER},
+            </if>
+            <if test="operUserName != null">
+                oper_user_name = #{operUserName,jdbcType=VARCHAR},
+            </if>
+            <if test="operUserIp != null">
+                oper_user_ip = #{operUserIp,jdbcType=VARCHAR},
+            </if>
+            <if test="operTime != null">
+                oper_time = #{operTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.oasystem.model.SysLog">
+        <!--@mbg.generated-->
+        update sys_log
+        set oper_model = #{operModel,jdbcType=VARCHAR},
+        oper_type = #{operType,jdbcType=VARCHAR},
+        oper_desc = #{operDesc,jdbcType=VARCHAR},
+        oper_user_id = #{operUserId,jdbcType=INTEGER},
+        oper_user_name = #{operUserName,jdbcType=VARCHAR},
+        oper_user_ip = #{operUserIp,jdbcType=VARCHAR},
+        oper_time = #{operTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-07-->
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_log
+    </select>
+</mapper>

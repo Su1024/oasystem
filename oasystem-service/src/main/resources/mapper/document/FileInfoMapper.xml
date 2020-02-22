@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.document.FileInfoMapper">
+    <resultMap id="BaseResultMap" type="com.oasystem.model.vo.FileInfoVo">
+        <!--@mbg.generated-->
+        <!--@Table file_info-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="location" jdbcType="VARCHAR" property="location"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="group_id" jdbcType="INTEGER" property="groupId"/>
+        <result column="create_user" jdbcType="VARCHAR" property="userName"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="remarks" jdbcType="LONGVARCHAR" property="remarks"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_delete" jdbcType="INTEGER" property="isDelete"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+        <result column="size" jdbcType="INTEGER" property="size"/>
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
+
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id,`type`,`location`, `name`, group_id, create_user, create_time, remarks, update_time,
+        is_delete,pid,size
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from file_info
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from file_info
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.FileInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into file_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="location != null">
+                `location`,
+            </if>
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="groupId != null">
+                group_id,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="isDelete != null">
+                is_delete,
+            </if>
+            <if test="pid != null">
+                pid,
+            </if>
+            <if test="size != null">
+                size,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="type != null">
+                #{type,jdbcType=INTEGER },
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null">
+                #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                #{isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="pid != null">
+                #{pid,jdbcType=INTEGER},
+            </if>
+            <if test="size != null">
+                #{size,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.FileInfo">
+        <!--@mbg.generated-->
+        update file_info
+        <set>
+            <if test="type != null">
+                `type` = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="location != null">
+                `location` = #{location,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="groupId != null">
+                group_id = #{groupId,jdbcType=INTEGER},
+            </if>
+            <if test="createUser != null">
+                create_user = #{createUser,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete,jdbcType=INTEGER},
+            </if>
+            <if test="size != null">
+                size = #{isDelete,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-07-->
+    <select id="selectAllByGroupId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from file_info
+        where group_id=#{groupId,jdbcType=INTEGER} and is_delete=0 order by create_time desc
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-08-->
+    <update id="updateById" parameterType="java.lang.Integer">
+        update file_info
+        set is_delete = #{isDelete,jdbcType=INTEGER}
+        where id=#{id,jdbcType=BIGINT}
+    </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-08-->
+    <select id="getAllFolders" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from file_info
+        where type =1 and is_delete = 0
+    </select>
+
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-08-->
+    <select id="queryFile" resultMap="BaseResultMap">
+        select
+        a.id,a.`type`,a.`location`, a.`name`, a.group_id, user.name as create_user, a.create_time, a.remarks, a.update_time,
+        a.is_delete,a.pid,a.size,user.dept_name as dept_name
+        from file_info a left join file_info b
+        on a.id = b.pid
+        join user_info user on a.create_user = user.id
+         <where>
+            a.is_delete = 0
+            <if test="groupId != null">
+                and a.group_id=#{groupId,jdbcType=INTEGER}
+            </if>
+            <if test="pid == null">
+                and a.pid = 0
+            </if>
+            <if test="pid != null">
+                and a.pid =#{id,jdbcType=INTEGER}
+            </if>
+            <if test="createTime != null">
+                and a.create_time=#{createTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="createUser != null">
+                and a.create_user=#{createUser,jdbcType=INTEGER}
+            </if>
+            <if test="type != null">
+                and a.`type`=#{type,jdbcType=INTEGER}
+            </if>
+            <if test="key != null">
+                AND a.`name` like "%"#{key}"%"
+            </if>
+        </where>
+        order by a.id
+    </select>
+
+    <update id="moveFile" parameterType="java.lang.Integer">
+        update file_info
+        set pid = #{pid,jdbcType=INTEGER}
+        where id=#{id,jdbcType=BIGINT}
+    </update>
+</mapper>

@@ -1,0 +1,21 @@
+package com.oasystem.dao.sysLog;
+
+import com.oasystem.model.SysLog;
+
+import java.util.List;
+
+public interface SysLogMapper {
+    int deleteByPrimaryKey(Integer id);
+
+    int insert(SysLog record);
+
+    int insertSelective(SysLog record);
+
+    SysLog selectByPrimaryKey(Integer id);
+
+    int updateByPrimaryKeySelective(SysLog record);
+
+    int updateByPrimaryKey(SysLog record);
+
+    List<SysLog> selectAll();
+}

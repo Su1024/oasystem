@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.mail.MessageInfoMapper">
+  <resultMap id="BaseResultMap" type="com.oasystem.model.MessageInfo">
+    <!--@mbg.generated-->
+    <!--@Table message_info-->
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="topic" jdbcType="VARCHAR" property="topic" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="send_user_id" jdbcType="INTEGER" property="sendUserId" />
+    <result column="accept_user_id" jdbcType="VARCHAR" property="acceptUserId" />
+    <result column="send_time" jdbcType="TIMESTAMP" property="sendTime" />
+    <result column="effective_time" jdbcType="TIMESTAMP" property="effectiveTime" />
+    <result column="is_save" jdbcType="INTEGER" property="isSave" />
+    <result column="is_read" jdbcType="INTEGER" property="isRead" />
+    <result column="is_delete_accept" jdbcType="INTEGER" property="isDeleteAccept" />
+    <result column="is_delete_send" jdbcType="INTEGER" property="isDeleteSend" />
+    <result column="is_delete_accept_trash" jdbcType="INTEGER" property="isDeleteAcceptTrash" />
+    <result column="is_delete_send_trash" jdbcType="INTEGER" property="isDeleteSendTrash" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--@mbg.generated-->
+    id, topic, content, send_user_id, accept_user_id, send_time, effective_time, is_save, 
+    is_read, is_delete_accept, is_delete_send, is_delete_accept_trash, is_delete_send_trash, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from message_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <!--@mbg.generated-->
+    delete from message_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.MessageInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into message_info (topic, content, send_user_id, 
+      accept_user_id, send_time, effective_time, 
+      is_save, is_read, is_delete_accept, 
+      is_delete_send, is_delete_accept_trash, is_delete_send_trash, 
+      update_time)
+    values (#{topic,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}, #{sendUserId,jdbcType=INTEGER}, 
+      #{acceptUserId,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{effectiveTime,jdbcType=TIMESTAMP}, 
+      #{isSave,jdbcType=INTEGER}, #{isRead,jdbcType=INTEGER}, #{isDeleteAccept,jdbcType=INTEGER}, 
+      #{isDeleteSend,jdbcType=INTEGER}, #{isDeleteAcceptTrash,jdbcType=INTEGER}, #{isDeleteSendTrash,jdbcType=INTEGER}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.MessageInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into message_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="topic != null">
+        topic,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="sendUserId != null">
+        send_user_id,
+      </if>
+      <if test="acceptUserId != null">
+        accept_user_id,
+      </if>
+      <if test="sendTime != null">
+        send_time,
+      </if>
+      <if test="effectiveTime != null">
+        effective_time,
+      </if>
+      <if test="isSave != null">
+        is_save,
+      </if>
+      <if test="isRead != null">
+        is_read,
+      </if>
+      <if test="isDeleteAccept != null">
+        is_delete_accept,
+      </if>
+      <if test="isDeleteSend != null">
+        is_delete_send,
+      </if>
+      <if test="isDeleteAcceptTrash != null">
+        is_delete_accept_trash,
+      </if>
+      <if test="isDeleteSendTrash != null">
+        is_delete_send_trash,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="topic != null">
+        #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sendUserId != null">
+        #{sendUserId,jdbcType=INTEGER},
+      </if>
+      <if test="acceptUserId != null">
+        #{acceptUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSave != null">
+        #{isSave,jdbcType=INTEGER},
+      </if>
+      <if test="isRead != null">
+        #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteAccept != null">
+        #{isDeleteAccept,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteSend != null">
+        #{isDeleteSend,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteAcceptTrash != null">
+        #{isDeleteAcceptTrash,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteSendTrash != null">
+        #{isDeleteSendTrash,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.MessageInfo">
+    <!--@mbg.generated-->
+    update message_info
+    <set>
+      <if test="topic != null">
+        topic = #{topic,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="sendUserId != null">
+        send_user_id = #{sendUserId,jdbcType=INTEGER},
+      </if>
+      <if test="acceptUserId != null">
+        accept_user_id = #{acceptUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null">
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="effectiveTime != null">
+        effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isSave != null">
+        is_save = #{isSave,jdbcType=INTEGER},
+      </if>
+      <if test="isRead != null">
+        is_read = #{isRead,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteAccept != null">
+        is_delete_accept = #{isDeleteAccept,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteSend != null">
+        is_delete_send = #{isDeleteSend,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteAcceptTrash != null">
+        is_delete_accept_trash = #{isDeleteAcceptTrash,jdbcType=INTEGER},
+      </if>
+      <if test="isDeleteSendTrash != null">
+        is_delete_send_trash = #{isDeleteSendTrash,jdbcType=INTEGER},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.oasystem.model.MessageInfo">
+    <!--@mbg.generated-->
+    update message_info
+    set topic = #{topic,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      send_user_id = #{sendUserId,jdbcType=INTEGER},
+      accept_user_id = #{acceptUserId,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      effective_time = #{effectiveTime,jdbcType=TIMESTAMP},
+      is_save = #{isSave,jdbcType=INTEGER},
+      is_read = #{isRead,jdbcType=INTEGER},
+      is_delete_accept = #{isDeleteAccept,jdbcType=INTEGER},
+      is_delete_send = #{isDeleteSend,jdbcType=INTEGER},
+      is_delete_accept_trash = #{isDeleteAcceptTrash,jdbcType=INTEGER},
+      is_delete_send_trash = #{isDeleteSendTrash,jdbcType=INTEGER},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

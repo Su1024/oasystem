@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.oasystem.dao.system.user.UserInfoMapper">
+    <resultMap id="BaseResultMap" type="com.oasystem.model.UserInfo">
+        <!--@mbg.generated-->
+        <!--@Table user_info-->
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <id column="user_code" jdbcType="VARBINARY" property="userCode"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="photo" jdbcType="VARCHAR" property="photo"/>
+        <result column="age" jdbcType="INTEGER" property="age"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="email" jdbcType="VARCHAR" property="email"/>
+        <result column="mobile_phone" jdbcType="INTEGER" property="mobilePhone"/>
+        <result column="home_phone" jdbcType="INTEGER" property="homePhone"/>
+        <result column="entry_time" jdbcType="TIMESTAMP" property="entryTime"/>
+        <result column="office_location" jdbcType="VARCHAR" property="officeLocation"/>
+        <result column="office_phone" jdbcType="INTEGER" property="officePhone"/>
+        <result column="dept_id" jdbcType="INTEGER" property="deptId"/>
+        <result column="dept_name" jdbcType="VARCHAR" property="deptName"/>
+        <result column="nation" jdbcType="VARCHAR" property="nation"/>
+        <result column="native_place" jdbcType="VARCHAR" property="nativePlace"/>
+        <result column="registered_address" jdbcType="VARCHAR" property="registeredAddress"/>
+        <result column="birth" jdbcType="TIMESTAMP" property="birth"/>
+        <result column="political_outlook" jdbcType="VARCHAR" property="politicalOutlook"/>
+        <result column="id_code" jdbcType="VARCHAR" property="idCode"/>
+        <result column="marital_status" jdbcType="INTEGER" property="maritalStatus"/>
+        <result column="role_id" jdbcType="INTEGER" property="roleId"/>
+        <result column="remarks" jdbcType="LONGVARCHAR" property="remarks"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, user_code,`name`, photo, age, gender, address, email, mobile_phone, home_phone, entry_time,
+        office_location, office_phone, dept_id,dept_name, nation, native_place, registered_address,
+        birth, political_outlook, id_code, marital_status, role_id, remarks
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <!--@mbg.generated-->
+        delete from user_info
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.UserInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_info (`name`, photo, age,
+        gender, address, email,
+        mobile_phone, home_phone, entry_time,
+        office_location, office_phone, dept_id,
+        nation, native_place, registered_address,
+        birth, political_outlook, id_code,
+        marital_status, role_id, remarks
+        )
+        values (#{name,jdbcType=VARCHAR}, #{photo,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER},
+        #{gender,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
+        #{mobilePhone,jdbcType=INTEGER}, #{homePhone,jdbcType=INTEGER}, #{entryTime,jdbcType=TIMESTAMP},
+        #{officeLocation,jdbcType=VARCHAR}, #{officePhone,jdbcType=INTEGER}, #{deptId,jdbcType=INTEGER},
+        #{nation,jdbcType=VARCHAR}, #{nativePlace,jdbcType=VARCHAR}, #{registeredAddress,jdbcType=VARCHAR},
+        #{birth,jdbcType=TIMESTAMP}, #{politicalOutlook,jdbcType=VARCHAR}, #{idCode,jdbcType=VARCHAR},
+        #{maritalStatus,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{remarks,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.oasystem.model.UserInfo"
+            useGeneratedKeys="true">
+        <!--@mbg.generated-->
+        insert into user_info
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                `name`,
+            </if>
+            <if test="photo != null">
+                photo,
+            </if>
+            <if test="age != null">
+                age,
+            </if>
+            <if test="gender != null">
+                gender,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="email != null">
+                email,
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone,
+            </if>
+            <if test="homePhone != null">
+                home_phone,
+            </if>
+            <if test="entryTime != null">
+                entry_time,
+            </if>
+            <if test="officeLocation != null">
+                office_location,
+            </if>
+            <if test="officePhone != null">
+                office_phone,
+            </if>
+            <if test="deptId != null">
+                dept_id,
+            </if>
+            <if test="deptName != null">
+                dept_name,
+            </if>
+            <if test="nation != null">
+                nation,
+            </if>
+            <if test="nativePlace != null">
+                native_place,
+            </if>
+            <if test="registeredAddress != null">
+                registered_address,
+            </if>
+            <if test="birth != null">
+                birth,
+            </if>
+            <if test="politicalOutlook != null">
+                political_outlook,
+            </if>
+            <if test="idCode != null">
+                id_code,
+            </if>
+            <if test="maritalStatus != null">
+                marital_status,
+            </if>
+            <if test="roleId != null">
+                role_id,
+            </if>
+            <if test="remarks != null">
+                remarks,
+            </if>
+            <if test="userCode != null">
+                user_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null">
+                #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                #{age,jdbcType=INTEGER},
+            </if>
+            <if test="gender != null">
+                #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                #{mobilePhone,jdbcType=INTEGER},
+            </if>
+            <if test="homePhone != null">
+                #{homePhone,jdbcType=INTEGER},
+            </if>
+            <if test="entryTime != null">
+                #{entryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="officeLocation != null">
+                #{officeLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="officePhone != null">
+                #{officePhone,jdbcType=INTEGER},
+            </if>
+            <if test="deptId != null">
+                #{deptId,jdbcType=INTEGER},
+            </if>
+            <if test="deptName != null">
+                #{deptName,jdbcType=INTEGER},
+            </if>
+            <if test="nation != null">
+                #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="nativePlace != null">
+                #{nativePlace,jdbcType=VARCHAR},
+            </if>
+            <if test="registeredAddress != null">
+                #{registeredAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="birth != null">
+                #{birth,jdbcType=TIMESTAMP},
+            </if>
+            <if test="politicalOutlook != null">
+                #{politicalOutlook,jdbcType=VARCHAR},
+            </if>
+            <if test="idCode != null">
+                #{idCode,jdbcType=VARCHAR},
+            </if>
+            <if test="maritalStatus != null">
+                #{maritalStatus,jdbcType=INTEGER},
+            </if>
+            <if test="roleId != null">
+                #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="remarks != null">
+                #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+            <if test="userCode != null">
+                #{userCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.oasystem.model.UserInfo">
+        <!--@mbg.generated-->
+        update user_info
+        <set>
+            <if test="name != null">
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="photo != null">
+                photo = #{photo,jdbcType=VARCHAR},
+            </if>
+            <if test="age != null">
+                age = #{age,jdbcType=INTEGER},
+            </if>
+            <if test="gender != null">
+                gender = #{gender,jdbcType=INTEGER},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="mobilePhone != null">
+                mobile_phone = #{mobilePhone,jdbcType=INTEGER},
+            </if>
+            <if test="homePhone != null">
+                home_phone = #{homePhone,jdbcType=INTEGER},
+            </if>
+            <if test="entryTime != null">
+                entry_time = #{entryTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="officeLocation != null">
+                office_location = #{officeLocation,jdbcType=VARCHAR},
+            </if>
+            <if test="officePhone != null">
+                office_phone = #{officePhone,jdbcType=INTEGER},
+            </if>
+            <if test="deptId != null">
+                dept_id = #{deptId,jdbcType=INTEGER},
+            </if>
+            <if test="deptName != null">
+                dept_name = #{deptName,jdbcType=VARCHAR},
+            </if>
+
+            <if test="nation != null">
+                nation = #{nation,jdbcType=VARCHAR},
+            </if>
+            <if test="nativePlace != null">
+                native_place = #{nativePlace,jdbcType=VARCHAR},
+            </if>
+            <if test="registeredAddress != null">
+                registered_address = #{registeredAddress,jdbcType=VARCHAR},
+            </if>
+            <if test="birth != null">
+                birth = #{birth,jdbcType=TIMESTAMP},
+            </if>
+            <if test="politicalOutlook != null">
+                political_outlook = #{politicalOutlook,jdbcType=VARCHAR},
+            </if>
+            <if test="idCode != null">
+                id_code = #{idCode,jdbcType=VARCHAR},
+            </if>
+            <if test="maritalStatus != null">
+                marital_status = #{maritalStatus,jdbcType=INTEGER},
+            </if>
+            <if test="roleId != null">
+                role_id = #{roleId,jdbcType=INTEGER},
+            </if>
+            <if test="remarks != null">
+                remarks = #{remarks,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.oasystem.model.UserInfo">
+        <!--@mbg.generated-->
+        update user_info
+        set `name` = #{name,jdbcType=VARCHAR},
+        photo = #{photo,jdbcType=VARCHAR},
+        age = #{age,jdbcType=INTEGER},
+        gender = #{gender,jdbcType=INTEGER},
+        address = #{address,jdbcType=VARCHAR},
+        email = #{email,jdbcType=VARCHAR},
+        mobile_phone = #{mobilePhone,jdbcType=INTEGER},
+        home_phone = #{homePhone,jdbcType=INTEGER},
+        entry_time = #{entryTime,jdbcType=TIMESTAMP},
+        office_location = #{officeLocation,jdbcType=VARCHAR},
+        office_phone = #{officePhone,jdbcType=INTEGER},
+        dept_id = #{deptId,jdbcType=INTEGER},
+        nation = #{nation,jdbcType=VARCHAR},
+        native_place = #{nativePlace,jdbcType=VARCHAR},
+        registered_address = #{registeredAddress,jdbcType=VARCHAR},
+        birth = #{birth,jdbcType=TIMESTAMP},
+        political_outlook = #{politicalOutlook,jdbcType=VARCHAR},
+        id_code = #{idCode,jdbcType=VARCHAR},
+        marital_status = #{maritalStatus,jdbcType=INTEGER},
+        column_21 = #{column21,jdbcType=INTEGER},
+        remarks = #{remarks,jdbcType=LONGVARCHAR}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        <where>
+            <if test="userCode != null and userCode != ''">
+                AND user_code = #{userCode}
+            </if>
+
+            <if test="name != null and name != ''">
+                AND name like "%"#{name}"%"
+            </if>
+            <if test="deptId != null and deptId != ''">
+                AND dept_id = #{deptId}
+            </if>
+            <if test="entryTime != null and entryTime != ''">
+                AND entry_time >= #{entryTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+
+<!--auto generated by MybatisCodeHelper on 2020-02-17-->
+    <select id="selectByUserCode" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_info
+        where user_code=#{userCode,jdbcType=VARBINARY}
+    </select>
+
+
+
+</mapper>
